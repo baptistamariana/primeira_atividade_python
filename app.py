@@ -1,8 +1,13 @@
 import os
 
-restaurantes = ['Pizza', 'Sushi'] #cadastrando os restaurantes
+#restaurantes = ['Pizza', 'Sushi'] #cadastrando os restaurantes
 
-def exibir_nome_do_programa():
+restaurantes = [{'nome':'MarVi','categoria':'Japonês','ativo':True},
+                {'nome':'Comn','categoria':'Italiano','ativo':False},
+                {'nome':'Larosa','categoria':'Mexicano','ativo':True},
+               ]
+
+def exibir_nome_do_programa():  
     print("""
 ░██████╗░█████╗░██████╗░░█████╗░██████╗░  ███████╗██╗░░██╗██████╗░██████╗░███████╗░██████╗░██████╗
 ██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗  ██╔════╝╚██╗██╔╝██╔══██╗██╔══██╗██╔════╝██╔════╝██╔════╝
@@ -37,7 +42,9 @@ def exibir_subtitulo(texto):  # função
 def cadastrar_novo_restaurante():
     exibir_subtitulo('Cadastro de novos restaurantes')
     nome_do_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ')
-    restaurantes.append(nome_do_restaurante)
+    categoria = input(f'Digite o nome da categoria do restaurante {nome_do_restaurante}: ')
+    dados_do_restaurante = {'nome':nome_do_restaurante,'categoria':categoria,'ativo':False}
+    restaurantes.append(dados_do_restaurante)
     print(f'O restaurante {nome_do_restaurante} foi cadastrado com sucesso!')
     
     voltar_ao_menu_principal()
@@ -46,7 +53,10 @@ def listar_restaurantes():
     exibir_subtitulo('Listando restaurantes')
 
     for restaurante in restaurantes:
-        print(f'.{restaurante}')
+        nome_restaurante = restaurante['nome']
+        categoria = restaurante['categoria']
+        ativo = restaurante['ativo']
+        print(f' - {nome_restaurante} | {categoria} | {ativo}')
 
     voltar_ao_menu_principal()
 
